@@ -8,6 +8,7 @@ export default class IndexComponent extends React.Component {
     render() {
         return (
             <div>
+                <img src="http://www.reactiongifs.com/r/mgc.gif"></img>
             </div>
         );
     }
