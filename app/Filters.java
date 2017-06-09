@@ -1,26 +1,46 @@
-import play.filters.csrf.CSRFFilter;
-import play.filters.headers.SecurityHeadersFilter;
-import play.filters.hosts.AllowedHostsFilter;
-import play.http.DefaultHttpFilters;
+import javax.inject.*;
+import play.*;
+import play.mvc.EssentialFilter;
+import play.http.HttpFilters;
+import play.mvc.*;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import filters.ExampleFilter;
 
 /**
  * This class configures filters that run on every request. This
  * class is queried by Play to get a list of filters.
  *
- * https://www.playframework.com/documentation/latest/ScalaCsrf
- * https://www.playframework.com/documentation/latest/AllowedHostsFilter
- * https://www.playframework.com/documentation/latest/SecurityHeaders
+ * Play will automatically use filters from any class called
+ * <code>Filters</code> that is placed the root package. You can load filters
+ * from a different class by adding a `play.http.filters` setting to
+ * the <code>application.conf</code> configuration file.
  */
 @Singleton
-public class Filters extends DefaultHttpFilters {
+public class Filters implements HttpFilters {
 
+    private final Environment env;
+    private final EssentialFilter exampleFilter;
+
+    /**
+     * @param env Basic environment settings for the current application.
+     * @param exampleFilter A demonstration filter that adds a header to
+     */
     @Inject
-    public Filters(CSRFFilter csrfFilter,
-                   AllowedHostsFilter allowedHostsFilter,
-                   SecurityHeadersFilter securityHeadersFilter) {
-        super(csrfFilter, allowedHostsFilter, securityHeadersFilter);
+    public Filters(Environment env, ExampleFilter exampleFilter) {
+        this.env = env;
+        this.exampleFilter = exampleFilter;
     }
+
+    @Override
+    public EssentialFilter[] filters() {
+      // Use the example filter if we're running development mode. If
+      // we're running in production or test mode then don't use any
+      // filters at all.
+      if (env.mode().equals(Mode.DEV)) {
+          return new EssentialFilter[] { exampleFilter };
+      } else {
+         return new EssentialFilter[] {};
+      }
+    }
+
 }

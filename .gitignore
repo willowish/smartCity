@@ -1,3 +1,9 @@
-.idea/
-node_modules/
-target/
+logs
+target
+/.idea
+/.idea_modules
+/.classpath
+/.project
+/.settings
+/RUNNING_PID
+node_modules
