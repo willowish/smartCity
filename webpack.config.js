@@ -2,7 +2,7 @@ let webpack = require('webpack');
 let path = require('path');
 
 module.exports = {
-    context: path.join(__dirname, './src'),
+    context: path.join(__dirname, './frontend/src'),
     target: 'web',
     entry: {
         index: ['./index.js']
