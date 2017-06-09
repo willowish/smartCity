@@ -1,9 +1,13 @@
 package model.db;
 
+import com.avaje.ebean.Model;
+
+import javax.persistence.Entity;
+
 import model.db.UserRole;
 
 @Entity
-public class User {
+public class User extends Model{
 	public String username;
 	public String password;
 
