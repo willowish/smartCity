@@ -12,6 +12,7 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.1",
+    "node-sass": "^4.5.3",
     "postcss-loader": "^2.0.5",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
