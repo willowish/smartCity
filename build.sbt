@@ -14,6 +14,8 @@ libraryDependencies ++= Seq(
 
 libraryDependencies += evolutions
 
+libraryDependencies += filters
+
 enablePlugins(PlayEbean)
 
 fork in run := true
