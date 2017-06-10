@@ -12,6 +12,8 @@ libraryDependencies ++= Seq(
   javaWs
 )
 
+libraryDependencies += evolutions
+
 enablePlugins(PlayEbean)
 
 fork in run := true
