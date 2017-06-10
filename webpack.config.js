@@ -21,10 +21,32 @@ module.exports = {
                     }
                 }
             },
-            {
-                test: /\.css$/,
-                loader: ['style-loader', 'css-loader?sourceMap', 'postcss-loader']
-            }
+			{
+				test: /\.css$/,
+				loader: ['style-loader', 'css-loader?sourceMap', 'postcss-loader']
+			},
+			{
+				test: /\.scss$/,
+				use: [{
+					loader: "style-loader", // creates style nodes from JS strings
+					options: {
+						sourceMap: true,
+						sourceMapContents: true
+					}
+				}, {
+					loader: "css-loader", // translates CSS into CommonJS
+					options: {
+						sourceMap: true,
+						sourceMapContents: true
+					}
+				}, {
+					loader: "sass-loader", // compiles Sass to CSS
+					options: {
+						sourceMap: true,
+						sourceMapContents: true
+					}
+				}]
+			}
         ]
     },
     plugins: {},
